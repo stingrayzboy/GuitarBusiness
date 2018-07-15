@@ -1,6 +1,87 @@
 <%if logged_in?(:owner)%>
 	<%=render partial:'home/owner/dashboard',locals:{unsold:@unsold_guitars,sold:@sold_guitars,accessories:@accessories}%>
 <%else%>
-	<h1>Home#index</h1>
-	<p>Find me in app/views/home/index.html.erb</p>
+	
+
+	<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 class="display-4">Encore!</h1>
+      <p class="lead">This where the path leads to.</p>
+    </div>
+
+    <div class="container">
+    	<!-- This is where the container starts it ends in _footer.html.erb -->
+    <div class="card-deck mb-3 text-center">
+
+    <%@products.each do |p|%>
+
+    	<%if p.type.to_s=="Guitar"%>
+
+       
+	        <div class="card mb-4 box-shadow">
+	          <div class="card-header">
+	            <h4 class="my-0 font-weight-normal"><%=p.model%></h4>
+	          </div>
+	          <div class="card-body">
+	            <h1 class="card-title pricing-card-title">₹<%=p.price%></h1>
+	            
+	            <div style="height:300px">
+	            	<%=render partial:"shared/carousel",locals:{images:p.images}%>	
+	            </div>
+
+	            <%=link_to_if !(session[:cart].include?(p.id)),"Add to Cart",add_to_cart_path(p),class:"btn btn-lg btn-block btn-outline-primary",method: :post,remote: true%>
+	            <!-- <button type="button" class="btn btn-lg btn-block btn-outline-primary">Add To Cart</button> -->
+	          </div>
+	        </div>
+    	
+
+
+    	<%else%>
+
+
+
+    		<div class="card mb-4 box-shadow">
+	          <div class="card-header">
+	            <h4 class="my-0 font-weight-normal"><%=p.name%></h4>
+	          </div>
+	          <div class="card-body">
+	            <h1 class="card-title pricing-card-title">₹<%=p.price%></h1>
+	            
+
+	            <div style="height:300px">
+	            	<%=render partial:"shared/carousel",locals:{images:p.images}%>
+	            </div>
+
+
+	            <%=link_to_if (p.accessory_count>0),"Add to Cart",add_to_cart_path(p),class:"btn btn-lg btn-block btn-outline-primary",method: :post,remote: true%>
+	            <!-- <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button> -->
+	          </div>
+	        </div>
+
+    	<%end%>
+    <%end%>
+
+
+    	<%res=@products.count%>
+    	<%(res==0 ? 3 : res/3).times do %>
+
+    		<div class="card mb-4 box-shadow">
+	          <div class="card-header">
+	            <h4 class="my-0 font-weight-normal">Your Ad Here for </h4>
+	          </div>
+	          <div class="card-body">
+	            <h1 class="card-title pricing-card-title">₹1000 per ad</h1>
+	            
+
+	            <div style="height:300px">
+	            	<img src="<%=asset_path('image.jpeg')%>" class="d-block w-100">
+	            </div>
+
+
+
+	            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
+	          </div>
+	        </div>
+
+    	<%end%>
+    </div>
 <%end%>

@@ -1,0 +1,19 @@
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  
+
+
+  <div class="carousel-inner">
+    
+  <%images.each_with_index do |img,idx|%>
+
+    <div class="carousel-item <%='active' if idx==0%>">
+      <%=image_tag img.location.to_s,class:"d-block w-100"%>
+    </div>
+  <%end%>  
+ 
+  </div>
+
+
+
+
+</div>

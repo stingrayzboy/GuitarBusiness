@@ -1,0 +1,5 @@
+<div class="container">
+	<!-- no need to end container its closed in footer -->
+	<%@p.each_with_index do |p,idx|%>
+		<%=link_to "Invoice No: #{p}",view_bill_path(p),class:"btn btn-outline-primary"%><br>
+	<%end%>

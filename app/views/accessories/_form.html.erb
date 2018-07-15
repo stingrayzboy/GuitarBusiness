@@ -1,0 +1,44 @@
+<%= form_with(model: accessory, local: true) do |form| %>
+  <% if accessory.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(accessory.errors.count, "error") %> prohibited this accessory from being saved:</h2>
+
+      <ul>
+      <% accessory.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_area :name, id: :accessory_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: :accessory_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :characteristic %>
+    <%= form.text_area :characteristic, id: :accessory_characteristic %>
+  </div>
+
+  <div class="field">
+    <%= form.label :accessory_count %>
+    <%= form.text_area :accessory_count, id: :accessory_count %>
+  </div>
+
+  <%= form.fields_for :images do |p| %>
+     <div class="field">
+       <%= p.label :location %><br>
+       <%= p.file_field :location, :multiple => true, name:     "images[location][]" %>
+     </div>
+   <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

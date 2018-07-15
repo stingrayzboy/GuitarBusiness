@@ -1,0 +1,39 @@
+<%if logged_in?(:owner)%>
+
+
+<p id="notice"><%= notice %></p>
+
+<h1>Accessories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Characteristic</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @accessories.each do |accessory| %>
+      <tr>
+        <td><%= accessory.name %></td>
+        <td><%= accessory.price %></td>
+        <td><%= accessory.characteristic %></td>
+        <td><%= link_to 'Show', accessory %></td>
+        <td><%= link_to 'Edit', edit_accessory_path(accessory) %></td>
+        <td><%= link_to 'Destroy', accessory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Accessory', new_accessory_path %>
+
+<%else%>
+  <h1>You are not authorized here</h1>
+<%end%>
+

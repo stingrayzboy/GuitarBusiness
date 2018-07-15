@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @accessory.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @accessory.price %>
+</p>
+
+<p>
+  <strong>Characteristic:</strong>
+  <%= @accessory.characteristic %>
+</p>
+<%@accessory_images.each do |img|%>
+  <%=image_tag img.location.to_s%>
+<%end%>
+
+
+<%= link_to 'Edit', edit_accessory_path(@accessory) %> |
+<%= link_to 'Back', accessories_path %>

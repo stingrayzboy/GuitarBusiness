@@ -1,0 +1,48 @@
+<%= form_with(model: guitar, local: true,html:{ :multipart => true }) do |form| %>
+  <% if guitar.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(guitar.errors.count, "error") %> prohibited this guitar from being saved:</h2>
+
+      <ul>
+      <% guitar.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :model %>
+    <%= form.text_field :model, id: :guitar_model %>
+  </div>
+
+  <div class="field">
+    <%= form.label :brand %>
+    <%= form.text_field :brand, id: :guitar_brand %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: :guitar_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :serial %>
+    <%= form.text_area :serial, id: :guitar_serial %>
+  </div>
+
+  <div class="field">
+    <%= form.label :guitar_type %>
+    <%= form.text_field :guitar_type, id: :guitar_guitar_type %>
+  </div>
+  <%= form.fields_for :images do |p| %>
+     <div class="field">
+       <%= p.label :location %><br>
+       <%= p.file_field :location, :multiple => true, name:     "images[location][]" %>
+     </div>
+   <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

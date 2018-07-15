@@ -1,9 +1,16 @@
 class HomeController < ApplicationController
   def index
-  	session[:cart]=[]
-  	@guitars=Guitar.includes(:images)
-  	@accessories=Accessory.includes(:images)
-  	#byebug
+    if logged_in?(:owner)
+      @unsold_guitars=Guitar.where(sold:0)
+      @sold_guitars=Guitar.where(sold:1)
+      @accessories=Accessory.all
+      #byebug
+    else
+    	session[:cart]=[]
+    	@guitars=Guitar.includes(:images)
+    	@accessories=Accessory.includes(:images)
+    	#byebug
+    end
   end
 
   def checkout

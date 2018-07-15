@@ -32,8 +32,12 @@
   </div>
 
   <div class="field">
-    <%= form.label :guitar_type %>
-    <%= form.text_field :guitar_type, id: :guitar_guitar_type %>
+    <%= form.label :guitar_type %><br>
+    <%= form.label :classic%>
+    <%= form.radio_button(:guitar_type,"classic")%>
+    <%= form.label :electric%>
+    <%= form.radio_button(:guitar_type,"electric")%>
+    
   </div>
   <%= form.fields_for :images do |p| %>
      <div class="field">

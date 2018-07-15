@@ -12,7 +12,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   	devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
- 	has_many :purchases
+ 	
+  has_many :purchases
 	has_many :products, through: :purchases
 	before_create :new_customer
 
@@ -22,5 +23,7 @@ class User < ApplicationRecord
 			self.roles="customer"
 		end
 	end
+
+
 
 end

@@ -1,0 +1,28 @@
+<h1>Dashboard</h1>
+
+
+<div>
+	<h1>Unsold Guitars</h1>
+	<%=render partial:'shared/guitar_iterator',locals:{guitar:unsold}%>
+</div>
+
+<div>
+	<h1>Sold Guitars</h1>
+	<%=render partial:'shared/guitar_iterator',locals:{guitar:sold}%>
+</div>
+
+<div>
+	<h1>Accessories Count</h1>
+	<table>
+		<tr>
+			<th>Accessory Name</th>
+			<th>Accessory Count</th>
+		</tr>
+		<%accessories.each do |ac|%>
+			<tr>
+				<td><%=ac.name%></td>
+				<td><%=ac.accessory_count%></td>
+			</tr>
+		<%end%>
+	</table>
+</div>

@@ -28,6 +28,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'carrierwave'
 gem 'devise'
 gem 'petergate'
+gem 'jquery-rails'
+gem 'bootstrap'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

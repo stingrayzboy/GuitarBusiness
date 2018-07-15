@@ -1,0 +1,14 @@
+	<table>
+		<tr><th>Model</th>
+			<th>Brand</th>
+			<th>Serial</th>
+		</tr>
+		<%guitar.each do |us|%>
+		<tr>
+			<td><%=us.model%></td>
+			<td><%=us.brand%></td>
+			<td><%=us.serial%></td>
+		</tr>
+		<%end%>
+
+	</table>

@@ -17,8 +17,8 @@ module DeviseWhitelist
 	  	devise_parameter_sanitizer.permit(:sign_up,keys:[:city])
 	  	devise_parameter_sanitizer.permit(:account_update,keys:[:city])
 	  	
-	  	devise_parameter_sanitizer.permit(:sign_up,keys:[:pincode])
-	  	devise_parameter_sanitizer.permit(:account_update,keys:[:pincode])
+	  	devise_parameter_sanitizer.permit(:sign_up,keys:[:pin_code])
+	  	devise_parameter_sanitizer.permit(:account_update,keys:[:pin_code])
 	  	
 	  	devise_parameter_sanitizer.permit(:sign_up,keys:[:country])
 	  	devise_parameter_sanitizer.permit(:account_update,keys:[:country])

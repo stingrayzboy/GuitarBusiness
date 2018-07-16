@@ -45,7 +45,7 @@ class HomeController < ApplicationController
     session[:cart].each do|p|
       @p=Purchase.create!(purchase_id:purc+1,product:Product.find(p),user:current_user)
     end
-    @purchases=Purchase.where(purchase_id:@p.purchase_id)
+    @purchases=Purchase.where(purchase_id:@p.purchase_id).includes(:product)
     session[:cart]=[]
   end
 
@@ -60,6 +60,6 @@ class HomeController < ApplicationController
   end
 
   def bills
-    @purchasess=Purchase.where(purchase_id:params[:id])
+    @purchasess=Purchase.where(purchase_id:params[:id]).includes(:product)
   end
 end

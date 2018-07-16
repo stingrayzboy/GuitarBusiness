@@ -53,6 +53,7 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    chartkick (1.5.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -73,6 +74,8 @@ GEM
     ffi (1.9.25)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    groupdate (2.5.3)
+      activesupport (>= 3)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
@@ -193,8 +196,10 @@ DEPENDENCIES
   bootstrap
   byebug
   carrierwave
+  chartkick (~> 1.4, >= 1.4.1)
   coffee-rails (~> 4.2)
   devise
+  groupdate (~> 2.5, >= 2.5.2)
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)

@@ -30,6 +30,8 @@ gem 'devise'
 gem 'petergate'
 gem 'jquery-rails'
 gem 'bootstrap'
+gem 'chartkick', '~> 1.4', '>= 1.4.1'
+gem 'groupdate', '~> 2.5', '>= 2.5.2'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

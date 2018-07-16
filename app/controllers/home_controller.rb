@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   before_action :authenticate_user!,except:[:index]
+  
   def index
     if logged_in?(:owner)
       @unsold_guitars=Guitar.where(sold:0)
@@ -80,17 +81,21 @@ class HomeController < ApplicationController
   end
 
   def all_orders
-    @p=nil
-    User.all.each_with_index do |user,idx|
-      if idx==0
-        @p=Purchase.select("DISTINCT(purchase_id)").where(user:user).pluck(:purchase_id).uniq
-      else
-        @p<<Purchase.select("DISTINCT(purchase_id)").where(user:user).pluck(:purchase_id).uniq
+    if logged_in?(:owner)
+      @p=nil
+      User.all.each_with_index do |user,idx|
+        if idx==0
+          @p=Purchase.select("DISTINCT(purchase_id)").where(user:user).pluck(:purchase_id).uniq
+        else
+          @p<<Purchase.select("DISTINCT(purchase_id)").where(user:user).pluck(:purchase_id).uniq
+        end
       end
+      @p.flatten!
+      #byebug
+      render :orders
+    else
+      redirect_to root_path
     end
-    @p.flatten!
-    #byebug
-    render :orders
   end
 
   def bills

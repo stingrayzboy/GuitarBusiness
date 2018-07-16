@@ -77,7 +77,20 @@ class HomeController < ApplicationController
 
   def orders
     @p=Purchase.select("DISTINCT(purchase_id)").where(user:current_user).pluck(:purchase_id).uniq
+  end
 
+  def all_orders
+    @p=nil
+    User.all.each_with_index do |user,idx|
+      if idx==0
+        @p=Purchase.select("DISTINCT(purchase_id)").where(user:user).pluck(:purchase_id).uniq
+      else
+        @p<<Purchase.select("DISTINCT(purchase_id)").where(user:user).pluck(:purchase_id).uniq
+      end
+    end
+    @p.flatten!
+    #byebug
+    render :orders
   end
 
   def bills

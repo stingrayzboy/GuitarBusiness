@@ -6,6 +6,7 @@
 					<%if logged_in?(:owner)%>
 						<%=link_to :Guitars,guitars_path,class:"p-2 text-dark"%>
 						<%=link_to :Accessories,accessories_path,class:"p-2 text-dark"%>
+						<%=link_to :Invoices,all_orders_path,class:"p-2 text-dark"%>
 					<%else%>
 						<span class="p-2 text-dark" id="cart">Items in Cart: <%=session[:cart].length%></span>
 						<%=link_to :Checkout,checkout_path,class:"p-2 text-dark"%>

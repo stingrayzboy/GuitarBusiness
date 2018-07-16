@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'home/reset',to:'home#reset',as:"reset_order"
   get 'home/orders',to:'home#orders',as:'my_orders'
   get 'home/bills/:id',to:'home#bills',as:'view_bill'
+  get 'orders',to:'home#all_orders',as:'all_orders' 
   devise_for :users
   resources :accessories
   resources :guitars

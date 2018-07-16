@@ -1,5 +1,5 @@
 <div class="container">
-<h1>Dashboard</h1>
+<h1 class="text-center">Dashboard</h1>
 <h3 class="text-center">Purchases By Day</h3>
 	<%= line_chart Purchase.group_by_day(:created_at).count.transform_keys{|key| key=key.in_time_zone("Chennai")}%>
 <h3 class="text-center">Inventory Overview</h3>

@@ -5,7 +5,7 @@
 
 	<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
       <h1 class="display-4">Encore!</h1>
-      <p class="lead">This where the path leads to.</p>
+      <p class="lead">Where the path leads to...</p>
     </div>
 
     <div class="container">
@@ -62,7 +62,7 @@
 
 
     	<%res=@products.count%>
-    	<%(res==0 ? 3 : (res%3==0 ? 3 : res/3)).times do %>
+    	<%(res==0 ? 3 : (res<3 ? 3-res: (res%3==0 ? 3 : res/3))).times do %>
 
     		<div class="card mb-4 box-shadow">
 	          <div class="card-header">

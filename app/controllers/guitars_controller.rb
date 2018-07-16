@@ -69,11 +69,19 @@ class GuitarsController < ApplicationController
   # DELETE /guitars/1
   # DELETE /guitars/1.json
   def destroy
+    
+    begin
     @guitar.destroy
     respond_to do |format|
       format.html { redirect_to guitars_url, notice: 'Guitar was successfully destroyed.' }
       format.json { head :no_content }
     end
+    rescue
+      respond_to do |format|
+        format.html { redirect_to guitars_url, notice: 'You Cannot Destroy a Guitar that is Sold' }
+        format.json { head :no_content }
+      end
+    end 
   end
 
   private

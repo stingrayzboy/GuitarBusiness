@@ -41,6 +41,7 @@ class HomeController < ApplicationController
   end
 
   def pay
+  begin 
     last_purchase=Purchase.last
     if last_purchase.nil?
       purc=0
@@ -57,11 +58,14 @@ class HomeController < ApplicationController
         
 
       else
-        @notice='Some Products Couldnot be billed as they went out of Stock You Total amount got revised.' 
+        @notice='Some Products Couldnot be billed as they went out of Stock.Your Total amount got revised.' 
       end
 
     end
     @purchases=Purchase.where(purchase_id:@p.purchase_id).includes(:product)
+  rescue
+    redirect_to root_path
+  end
     session[:cart]=[]
   end
 

@@ -109,6 +109,7 @@ GEM
     petergate (1.8.1)
       activerecord (> 4.0.0)
     pg (1.0.0)
+    platipus (0.1.0)
     popper_js (1.12.9)
     puma (3.12.0)
     rack (2.0.5)
@@ -205,6 +206,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   petergate
   pg (>= 0.18, < 2.0)
+  platipus (~> 0.1.0)
   puma (~> 3.7)
   rails (~> 5.1.6)
   sass-rails (~> 5.0)

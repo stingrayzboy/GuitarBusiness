@@ -1,20 +1,25 @@
+<div class="container">
 <%if logged_in?(:owner)%>
   <p id="notice"><%= notice %></p>
 
 <h1>Guitars</h1>
 
-<table>
+
+<%= link_to 'New Guitar', new_guitar_path %>
+
+
+<table class="table">
   <thead>
     <tr>
-      <th>Model</th>
-      <th>Brand</th>
-      <th>Price</th>
-      <th>Serial</th>
-      <th>Guitar type</th>
-      <th colspan="3"></th>
+      <th scope="col">Model</th>
+      <th scope="col">Brand</th>
+      <th scope="col">Price</th>
+      <th scope="col">Serial</th>
+      <th scope="col">Guitar Type</th>
+      <th scope="col">Qty</th>
+      <th scope="col" colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @guitars.each do |guitar| %>
       <tr>
@@ -23,6 +28,7 @@
         <td><%= guitar.price %></td>
         <td><%= guitar.serial %></td>
         <td><%= guitar.guitar_type %></td>
+        <td><%= guitar.accessory_count%></td>
         <td><%= link_to 'Show', guitar %></td>
         <td><%= link_to 'Edit', edit_guitar_path(guitar) %></td>
         <td><%= link_to 'Destroy', guitar, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -30,10 +36,6 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Guitar', new_guitar_path %>
 
 <%else%>
   <h1>You are not authorized here</h1>

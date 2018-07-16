@@ -106,8 +106,7 @@
                             
                             <td>
                                 Invoice #: <%=invoice.purchase_id%><br>
-                                Created: <%=invoice.created_at%><br>
-                                
+                                Created: <%=invoice.created_at.in_time_zone("Chennai").strftime("%d/%m/%Y %I:%M%p")%><br>
                             </td>
                         </tr>
                     </table>

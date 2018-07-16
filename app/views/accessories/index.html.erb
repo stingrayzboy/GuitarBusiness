@@ -1,21 +1,22 @@
+<div class="container">
 <%if logged_in?(:owner)%>
 
 
 <p id="notice"><%= notice %></p>
 
 <h1>Accessories</h1>
+<%= link_to 'New Accessory', new_accessory_path %>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Characteristic</th>
-      <th>Count</th>
-      <th colspan="3"></th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Characteristic</th>
+      <th scope="col">Qty</th>
+      <th scope="col" colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @accessories.each do |accessory| %>
       <tr>
@@ -31,9 +32,6 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Accessory', new_accessory_path %>
 
 <%else%>
   <h1>You are not authorized here</h1>

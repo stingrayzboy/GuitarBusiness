@@ -1,5 +1,26 @@
 <div class="container">
 	<!-- no need to end container its closed in footer -->
-	<%@p.each_with_index do |p,idx|%>
-		<%=link_to "Invoice No: #{p}",view_bill_path(p),class:"btn btn-outline-primary"%><br>
-	<%end%>
+	
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Invoice No.</th>
+      <th scope="col">Date</th>
+      <th scope="col">Open</th>
+    </tr>
+  	</thead>
+  	<tbody>
+	  	<%@p.each_with_index do |p,idx|%>
+			<tr>
+		      <th scope="row"><%=idx+1%></th>
+		      <td><%=p%></td>
+		      <td><%=Purchase.where(purchase_id:p).select(:created_at).last[:created_at].in_time_zone("Chennai").strftime("%d/%m/%Y %I:%M%p")%></td>
+		      <td><%=link_to "Invoice No: #{p}",view_bill_path(p),class:"btn btn-outline-primary"%><br></td>
+		    </tr>
+		<%end%>
+	</tbody>   
+</table>
+
+
+	

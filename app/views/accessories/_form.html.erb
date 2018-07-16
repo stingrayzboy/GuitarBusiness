@@ -1,3 +1,4 @@
+
 <%= form_with(model: accessory, local: true) do |form| %>
   <% if accessory.errors.any? %>
     <div id="error_explanation">
@@ -11,34 +12,34 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_area :name, id: :accessory_name %>
+    <%= form.text_area :name, id: :accessory_name,class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :price %>
-    <%= form.text_field :price, id: :accessory_price %>
+    <%= form.text_field :price, id: :accessory_price,class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :characteristic %>
-    <%= form.text_area :characteristic, id: :accessory_characteristic %>
+    <%= form.text_area :characteristic, id: :accessory_characteristic ,class:"form-control"%>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :accessory_count %>
-    <%= form.number_field :accessory_count, id: :accessory_count %>
+    <%= form.number_field :accessory_count, id: :accessory_count,class:"form-control" %>
   </div>
 
   <%= form.fields_for :images do |p| %>
-     <div class="field">
+     <div class="form-group">
        <%= p.label :location %><br>
-       <%= p.file_field :location, :multiple => true, name:     "images[location][]" %>
+       <%= p.file_field :location, :multiple => true, name:     "images[location][]",class:"form-control" %>
      </div>
    <% end %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Submit",class:"btn btn-outline-success" %>
   </div>
 <% end %>

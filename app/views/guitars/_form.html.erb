@@ -11,31 +11,31 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :model %>
-    <%= form.text_field :model, id: :guitar_model %>
+    <%= form.text_field :model, id: :guitar_model,class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :brand %>
-    <%= form.text_field :brand, id: :guitar_brand %>
+    <%= form.text_field :brand, id: :guitar_brand ,class:"form-control"%>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :price %>
-    <%= form.number_field :price, id: :guitar_price %>
+    <%= form.number_field :price, id: :guitar_price ,class:"form-control"%>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= form.label :count %>
-    <%= form.number_field :accessory_count, id: :guitar_count %>
+    <%= form.number_field :accessory_count, id: :guitar_count ,class:"form-control"%>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :serial %>
-    <%= form.text_area :serial, id: :guitar_serial %>
+    <%= form.text_area :serial, id: :guitar_serial ,class:"form-control"%>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :guitar_type %><br>
     <%= form.label :classic%>
     <%= form.radio_button(:guitar_type,"classic")%>
@@ -44,13 +44,13 @@
     
   </div>
   <%= form.fields_for :images do |p| %>
-     <div class="field">
+     <div class="form-group">
        <%= p.label :location %><br>
-       <%= p.file_field :location, :multiple => true, name:     "images[location][]" %>
+       <%= p.file_field :location, :multiple => true, name:     "images[location][]" ,class:"form-control"%>
      </div>
    <% end %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Submit",class:"btn btn-outline-success" %>
   </div>
 <% end %>

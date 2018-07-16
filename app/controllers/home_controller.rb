@@ -5,12 +5,17 @@ class HomeController < ApplicationController
       @unsold_guitars=Guitar.where(sold:0)
       @sold_guitars=Guitar.where(sold:1)
       @accessories=Accessory.all
+      #get the accessory key values
+      @pie_chart=Product.all.select(:name,:accessory_count).pluck(:name,:accessory_count).to_h.reject{|k| k.nil?}
+      #get the guitar key values
+      @pie_chart.merge!(Product.all.select(:model,:accessory_count).pluck(:model,:accessory_count).to_h.reject{|k| k.nil?})
+
       #byebug
     else
       unless session[:cart]
     	 session[:cart]=[]
       end
-    	@products=Product.includes(:images)
+    	@products=Product.where("accessory_count > '0'").includes(:images)
     	#byebug
     end
   end
@@ -43,7 +48,18 @@ class HomeController < ApplicationController
       purc=last_purchase.purchase_id.to_i
     end
     session[:cart].each do|p|
-      @p=Purchase.create!(purchase_id:purc+1,product:Product.find(p),user:current_user)
+      product=Product.find(p)
+
+      if product[:accessory_count]>0
+        @p=Purchase.create!(purchase_id:purc+1,product:product,user:current_user)
+        
+        product.type=='Guitar' ? product.update(accessory_count:(product.accessory_count-1),sold:1) : product.update(accessory_count:(product.accessory_count-1))
+        
+
+      else
+        @notice='Some Products Couldnot be billed as they went out of Stock You Total amount got revised.' 
+      end
+
     end
     @purchases=Purchase.where(purchase_id:@p.purchase_id).includes(:product)
     session[:cart]=[]

@@ -33,7 +33,7 @@ class AccessoriesController < ApplicationController
       if @accessory.save
 
         params[:images]['location'].each do |a|
-          @post_attachment = @accessory.images.create!(:location => a,     :imageable_id => @accessory.id, :imageable_type => @accessory.class.to_s)
+          @post_attachment = @accessory.images.create!(:location => a,:imageable_id => @accessory.id, :imageable_type => @accessory.class.to_s)
         end
 
 
@@ -53,7 +53,7 @@ class AccessoriesController < ApplicationController
       if @accessory.update(accessory_params)
 
         params[:images]['location'].each do |a|
-          @post_attachment = @accessory.images.update(:location => a,     :imageable_id => @accessory.id, :imageable_type => @accessory.class.to_s)
+          @post_attachment = @accessory.images.update(:location => a)
         end
 
         format.html { redirect_to @accessory, notice: 'Accessory was successfully updated.' }

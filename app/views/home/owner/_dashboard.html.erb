@@ -1,29 +1,21 @@
 <div class="container">
 <h1>Dashboard</h1>
+<h3 class="text-center">Purchases By Day</h3>
+	<%= line_chart Purchase.group_by_day(:created_at).count.transform_keys{|key| key=key.in_time_zone("Chennai")}%>
+<h3 class="text-center">Inventory Overview</h3>
+	<%= pie_chart @pie_chart%>
 
 
-<div>
-	<h1>Unsold Guitars</h1>
-	<%=render partial:'shared/guitar_iterator',locals:{guitar:unsold}%>
-</div>
 
-<div>
-	<h1>Sold Guitars</h1>
-	<%=render partial:'shared/guitar_iterator',locals:{guitar:sold}%>
-</div>
 
-<div>
-	<h1>Accessories Count</h1>
-	<table>
-		<tr>
-			<th>Accessory Name</th>
-			<th>Accessory Count</th>
-		</tr>
-		<%accessories.each do |ac|%>
-			<tr>
-				<td><%=ac.name%></td>
-				<td><%=ac.accessory_count%></td>
-			</tr>
-		<%end%>
-	</table>
+<div class="text-center">
+	<div>
+		<h1>Unsold Guitars</h1>
+		<%=render partial:'shared/guitar_iterator',locals:{guitar:unsold}%>
+	</div>
+
+	<div>
+		<h1>Sold Guitars</h1>
+		<%=render partial:'shared/guitar_iterator',locals:{guitar:sold}%>
+	</div>
 </div>

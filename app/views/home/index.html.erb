@@ -62,7 +62,7 @@
 
 
     	<%res=@products.count%>
-    	<%(res==0 ? 3 : res/3).times do %>
+    	<%(res==0 ? 3 : (res%3==0 ? 3 : res/3)).times do %>
 
     		<div class="card mb-4 box-shadow">
 	          <div class="card-header">

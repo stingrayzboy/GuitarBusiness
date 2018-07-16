@@ -54,7 +54,7 @@ class GuitarsController < ApplicationController
       if @guitar.update(guitar_params)
 
         params[:images]['location'].each do |a|
-          @post_attachment = @guitar.images.update(:location => a,     :imageable_id => @guitar.id, :imageable_type => @guitar.class.to_s)
+          @post_attachment = @guitar.images.update(:location => a)
         end
 
         format.html { redirect_to @guitar, notice: 'Guitar was successfully updated.' }
@@ -84,7 +84,7 @@ class GuitarsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def guitar_params
-      params.require(:guitar).permit(:model, :brand, :price, :serial, :guitar_type,images_attributes: 
+      params.require(:guitar).permit(:model, :brand, :price, :serial, :guitar_type,:accessory_count,images_attributes: 
   [:id, :imageable_id,:imageable_type, :location])
     end
 end

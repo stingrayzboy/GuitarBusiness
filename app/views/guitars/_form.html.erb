@@ -23,7 +23,11 @@
 
   <div class="field">
     <%= form.label :price %>
-    <%= form.text_field :price, id: :guitar_price %>
+    <%= form.number_field :price, id: :guitar_price %>
+  </div>
+  <div class="field">
+    <%= form.label :count %>
+    <%= form.number_field :accessory_count, id: :guitar_count %>
   </div>
 
   <div class="field">

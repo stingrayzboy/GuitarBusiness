@@ -34,6 +34,9 @@
 
 
 <%else%>
-  <h1>You are not authorized here</h1>
+  <div class="text-center">
+    <h1>You are not authorized here</h1>
+    <%= image_tag asset_path('unauthorized.png'),height:"50%"%>
+  </div>
 <%end%>
 

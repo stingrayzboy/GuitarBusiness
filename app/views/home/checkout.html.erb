@@ -1,35 +1,39 @@
 <div class="container">
 	<!-- This div is ended in Footer -->
-	<h1><%=@message%></h1>
+	<div class="text-center">
+		<h1><%=@message%></h1>
+		<% if @flag %>
+			<%= image_tag asset_path('empty_cart.png'),height:"50%"%>
+		<%end%>
 
-
-	<%if @products%>
-		<table class="table">
-		  <thead>
-		    <tr>
-		      <th scope="col">#</th>
-		      <th scope="col">Item</th>
-		      <th scope="col">Name/Model</th>
-		      <th scope="col">Price</th>
-		    </tr>
-		  </thead>
-		  <tbody>
-		  	<%total=0%>
-		  	<%@products.each_with_index do |p,idx|%>
-		  		<tr>
-			      <th scope="row"><%=idx+1%></th>
-			      <td><%=p.type.to_s%></td>
-			      <td><%=p.type.to_s == 'Guitar' ? p.model : p.name %></td>
-			      <td><%=p.price%></td>
-			      <%total+=p.price%>
+		<%if @products%>
+			<table class="table">
+			  <thead>
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">Item</th>
+			      <th scope="col">Name/Model</th>
+			      <th scope="col">Price</th>
 			    </tr>
+			  </thead>
+			  <tbody>
+			  	<%total=0%>
+			  	<%@products.each_with_index do |p,idx|%>
+			  		<tr>
+				      <th scope="row"><%=idx+1%></th>
+				      <td><%=p.type.to_s%></td>
+				      <td><%=p.type.to_s == 'Guitar' ? p.model : p.name %></td>
+				      <td><%=p.price%></td>
+				      <%total+=p.price%>
+				    </tr>
 
-		  	<%end%>
-		    <tr class="text-right">
-		    	<td colspan="4">Total: <%=total%></td>
-		    </tr>
-		  </tbody>
-		</table>
-		<%=link_to "Checkout",confirmed_order_path,class:"btn btn-outline-success" %>
-		<%=link_to "Reset Order",reset_order_path,class:"btn btn-outline-danger"%>
-	<%end%>
+			  	<%end%>
+			    <tr class="text-right">
+			    	<td colspan="4">Total: <%=total%></td>
+			    </tr>
+			  </tbody>
+			</table>
+			<%=link_to "Checkout",confirmed_order_path,class:"btn btn-outline-success" %>
+			<%=link_to "Reset Order",reset_order_path,class:"btn btn-outline-danger"%>
+		<%end%>
+	</div>

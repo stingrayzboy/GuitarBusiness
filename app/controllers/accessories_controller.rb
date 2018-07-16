@@ -1,7 +1,7 @@
 class AccessoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_accessory, only: [:show, :edit, :update, :destroy]
-  access all:[:show,:index] , owner: :all
+  access all:[:index] , owner: :all
   # GET /accessories
   # GET /accessories.json
   def index

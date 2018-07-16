@@ -30,7 +30,8 @@ class HomeController < ApplicationController
   	#byebug
   	logger.info(session[:cart])
   	if session[:cart].first.nil?
-  		@message="you dont have any items to checkout with"
+  		@message=""
+      @flag=true
   	else
   		@products=[]
       session[:cart].each do |prod|

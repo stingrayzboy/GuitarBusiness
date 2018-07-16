@@ -1,7 +1,7 @@
 class GuitarsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_guitar, only: [:show, :edit, :update, :destroy]
-  access all:[:show,:index] , owner: :all
+  access all:[:index] , owner: :all
   # GET /guitars
   # GET /guitars.json
   def index

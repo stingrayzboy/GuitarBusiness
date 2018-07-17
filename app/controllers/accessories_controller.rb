@@ -51,11 +51,12 @@ class AccessoriesController < ApplicationController
   def update
     
       if @accessory.update(accessory_params)
-
-        unless @accessory.images[idx].nil?
-            @post_attachment = @accessory.images[idx].update(:location => a)  
-        else
-            @post_attachment = @accessory.images.create!(:location => a,:imageable_id => @accessory.id, :imageable_type => @accessory.class.to_s)
+        params[:images]['location'].each_with_index do |a,idx|
+          unless @accessory.images[idx].nil?
+              @post_attachment = @accessory.images[idx].update(:location => a)  
+          else
+              @post_attachment = @accessory.images.create!(:location => a,:imageable_id => @accessory.id, :imageable_type => @accessory.class.to_s)
+          end
         end
         respond_to do |format|
           format.html { redirect_to @accessory, notice: 'Accessory was successfully updated.' }

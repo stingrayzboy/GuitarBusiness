@@ -1,7 +1,11 @@
 <%if logged_in?(:owner)%>
 	<%=render partial:'home/owner/dashboard',locals:{unsold:@unsold_guitars,sold:@sold_guitars,accessories:@accessories}%>
 <%else%>
-	
+<script type="text/javascript">
+	function open_product(p){
+		window.open('<%=show_product_path%>'+'?'+'id='+p,'_self');
+	}
+</script>	
 
 	<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
       <h1 class="display-4">Encore!</h1>
@@ -24,7 +28,7 @@
 	          <div class="card-body">
 	            <h1 class="card-title pricing-card-title">₹<%=p.price%></h1>
 	            
-	            <div style="height:300px">
+	            <div style="height:300px" onclick="open_product(<%=p.id%>)">
 	            	<%=render partial:"shared/carousel",locals:{images:p.images}%>	
 	            </div>
 
@@ -47,7 +51,7 @@
 	            <h1 class="card-title pricing-card-title">₹<%=p.price%></h1>
 	            
 
-	            <div style="height:300px">
+	            <div style="height:300px" onclick="open_product(<%=p.id%>)">
 	            	<%=render partial:"shared/carousel",locals:{images:p.images}%>
 	            </div>
 

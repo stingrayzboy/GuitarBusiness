@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :authenticate_user!,except:[:index]
+  before_action :authenticate_user!,except:[:index,:show]
   
   def index
     if logged_in?(:owner)
@@ -20,7 +20,10 @@ class HomeController < ApplicationController
     	#byebug
     end
   end
-
+  def show
+    id=params[:id]
+    @product=Product.find(id)
+  end
 
   def cart
     session[:cart]<<params[:product]

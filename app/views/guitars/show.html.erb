@@ -1,35 +1,5 @@
 <div class="container">
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Model:</strong>
-  <%= @guitar.model %>
-</p>
-
-<p>
-  <strong>Brand:</strong>
-  <%= @guitar.brand %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @guitar.price %>
-</p>
-
-<p>
-  <strong>Serial:</strong>
-  <%= @guitar.serial %>
-</p>
-
-<p>
-  <strong>Guitar type:</strong>
-  <%= @guitar.guitar_type %>
-</p>
-
-<%@guitar_images.each do |img|%>
-  <%=image_tag img.location.to_s%>
-<%end%>
-
-
+<%=render partial:"shared/show_product",locals:{product:@guitar}%>
 <%= link_to 'Edit', edit_guitar_path(@guitar) %> |
 <%= link_to 'Back', guitars_path %>

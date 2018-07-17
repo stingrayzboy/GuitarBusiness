@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'home/orders',to:'home#orders',as:'my_orders'
   get 'home/bills/:id',to:'home#bills',as:'view_bill'
   get 'orders',to:'home#all_orders',as:'all_orders' 
+  get 'show',to:'home#show',as:'show_product'
   devise_for :users
   resources :accessories
   resources :guitars

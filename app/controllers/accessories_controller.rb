@@ -11,7 +11,7 @@ class AccessoriesController < ApplicationController
   # GET /accessories/1
   # GET /accessories/1.json
   def show
-    @accessory_images = @accessory.images.all
+    #@accessory_images = @accessory.images.all
   end
 
   # GET /accessories/new

@@ -1,0 +1,85 @@
+
+	<style type="text/css">
+		.carousel-control-next-icon {
+		  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+		}
+		.carousel-control-prev-icon {
+		  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+		}
+	</style>
+	<div class="row">
+		<div class="col col-md-6">
+			
+			
+			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+			  <ol class="carousel-indicators">
+			   <%product.images.each_with_index do |img,idx|%>
+				    <li data-target="#carouselExampleIndicators" data-slide-to="<%=idx%>" <%='class="active"' if idx==0%>></li>
+			    <%end%>
+			  </ol>
+			  <div class="carousel-inner">
+			  <%product.images.each_with_index do |img,idx|%>
+				  
+				    <div class="carousel-item <%='active' if idx==0 %>" style="min-height: 450px;max-height: 450px;">
+				    	<%=image_tag img.location.to_s,class:"d-block w-100"%>
+				    </div>
+				  
+			  <%end%>
+			  </div>
+			  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+			  </a>
+			  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			  </a>
+			</div>
+		</div>
+		<div class="col col-md-6">
+			<%if product.class.to_s=='Guitar'%>
+				<p>
+				  <strong>Model:</strong>
+				  <%= product.model %>
+				</p>
+
+				<p>
+				  <strong>Brand:</strong>
+				  <%= product.brand %>
+				</p>
+
+				<p>
+				  <strong>Price:</strong>
+				  <%= product.price %>
+				</p>
+
+				<p>
+				  <strong>Serial:</strong>
+				  <%= product.serial %>
+				</p>
+
+				<p>
+				  <strong>Guitar type:</strong>
+				  <%= product.guitar_type %>
+				</p>
+			<%else%>
+				<p>
+				  <strong>Name:</strong>
+				  <%= product.name %>
+				</p>
+
+				<p>
+				  <strong>Price:</strong>
+				  <%= product.price %>
+				</p>
+
+				<p>
+				  <strong>Characteristic:</strong>
+				  <%= product.characteristic %>
+				</p>
+			<%end%>
+
+			<%=link_to "Add to Cart",add_to_cart_path(product),class:"btn btn-lg btn-block btn-outline-primary",method: :post,remote: true unless logged_in?(:owner)%>
+					
+		</div>
+	</div>

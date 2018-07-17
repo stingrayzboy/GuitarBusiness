@@ -11,7 +11,7 @@ class GuitarsController < ApplicationController
   # GET /guitars/1
   # GET /guitars/1.json
   def show
-    @guitar_images = @guitar.images.all
+    #@guitar_images = @guitar.images.all
     #byebug
   end
 

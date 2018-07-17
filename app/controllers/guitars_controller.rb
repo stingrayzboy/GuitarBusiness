@@ -28,13 +28,14 @@ class GuitarsController < ApplicationController
   # POST /guitars
   # POST /guitars.json
   def create
+    begin
     @guitar = Guitar.new(guitar_params)
 
     respond_to do |format|
       if @guitar.save
 
         params[:images]['location'].each do |a|
-          @post_attachment = @guitar.images.create!(:location => a,     :imageable_id => @guitar.id, :imageable_type => @guitar.class.to_s)
+          @post_attachment = @guitar.images.create!(:location => a,:imageable_id => @guitar.id, :imageable_type => @guitar.class.to_s)
         end
 
 
@@ -45,25 +46,37 @@ class GuitarsController < ApplicationController
         format.json { render json: @guitar.errors, status: :unprocessable_entity }
       end
     end
+    rescue
+      @guitar.destroy!
+      redirect_to guitars_path, notice: 'Guitar couldnot be created as you uploaded a jpeg instead of jpg'
+    end
   end
 
   # PATCH/PUT /guitars/1
   # PATCH/PUT /guitars/1.json
   def update
-    respond_to do |format|
+    
       if @guitar.update(guitar_params)
-
-        params[:images]['location'].each do |a|
-          @post_attachment = @guitar.images.update(:location => a)
+        #logger.info "Faraz Noor#{params[:images]}"
+        #byebug
+        params[:images]['location'].each_with_index do |a,idx|
+          unless @guitar.images[idx].nil?
+            @post_attachment = @guitar.images[idx].update(:location => a)  
+          else
+            @post_attachment = @guitar.images.create!(:location => a,:imageable_id => @guitar.id, :imageable_type => @guitar.class.to_s)
+          end
+          
         end
-
-        format.html { redirect_to @guitar, notice: 'Guitar was successfully updated.' }
-        format.json { render :show, status: :ok, location: @guitar }
+        respond_to do |format|
+          format.html { redirect_to @guitar, notice: 'Guitar was successfully updated.' }
+          format.json { render :show, status: :ok, location: @guitar }
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @guitar.errors, status: :unprocessable_entity }
+        respond_to do |format|
+          format.html { render :edit }
+          format.json { render json: @guitar.errors, status: :unprocessable_entity }
+        end
       end
-    end
   end
 
   # DELETE /guitars/1

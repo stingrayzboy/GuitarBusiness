@@ -49,19 +49,23 @@ class AccessoriesController < ApplicationController
   # PATCH/PUT /accessories/1
   # PATCH/PUT /accessories/1.json
   def update
-    respond_to do |format|
+    
       if @accessory.update(accessory_params)
 
-        params[:images]['location'].each do |a|
-          @post_attachment = @accessory.images.update(:location => a)
+        unless @accessory.images[idx].nil?
+            @post_attachment = @accessory.images[idx].update(:location => a)  
+        else
+            @post_attachment = @accessory.images.create!(:location => a,:imageable_id => @accessory.id, :imageable_type => @accessory.class.to_s)
         end
-
-        format.html { redirect_to @accessory, notice: 'Accessory was successfully updated.' }
-        format.json { render :show, status: :ok, location: @accessory }
-      else
-        format.html { render :edit }
-        format.json { render json: @accessory.errors, status: :unprocessable_entity }
-      end
+        respond_to do |format|
+          format.html { redirect_to @accessory, notice: 'Accessory was successfully updated.' }
+          format.json { render :show, status: :ok, location: @accessory }
+        end
+        else
+        respond_to do |format|
+          format.html { render :edit }
+          format.json { render json: @accessory.errors, status: :unprocessable_entity }
+        end
     end
   end
 

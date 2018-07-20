@@ -25,6 +25,25 @@ class HomeController < ApplicationController
     @product=Product.find(id)
   end
 
+  def search
+    @products=[]
+    Product.all.includes(:images).each do |prod|
+      prod.search_token.split('|').each do |token|
+        if token.upcase.include?(params['query'].upcase)
+          @products<<prod
+          break
+        end 
+      end
+    end
+    unless @products.empty?
+      logger.info"Found something #{@products}"
+      render :index
+    else
+      render html: helpers.tag.strong('Unfortunately the Product you were looking doesnot exists yet.')
+    end
+  end
+
+
   def cart
     session[:cart]<<params[:product]
 

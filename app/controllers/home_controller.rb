@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :authenticate_user!,except:[:index,:show]
+  before_action :authenticate_user!,except:[:index,:show,:search]
   
   def index
     if logged_in?(:owner)

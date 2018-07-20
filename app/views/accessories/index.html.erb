@@ -23,7 +23,10 @@
         <td><%= accessory.name %></td>
         <td><%= accessory.price %></td>
         <td><%= accessory.characteristic %></td>
-        <td><%= accessory.accessory_count %></td>
+        <%=form_for accessory,url:count_update_accessory_path do |f|%>
+          <%=f.hidden_field :id,value:accessory.id%>
+           <td><%= f.number_field :accessory_count, id: :accessory_count ,class:"form-control"%></td>
+        <%end%>
         <td><%= link_to 'Show', accessory %></td>
         <td><%= link_to 'Edit', edit_accessory_path(accessory) %></td>
         <td><%= link_to 'Destroy', accessory, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -13,7 +13,9 @@ class AccessoriesController < ApplicationController
   def show
     #@accessory_images = @accessory.images.all
   end
-
+  def count_update
+    Accessory.find(params[:accessory][:id]).update(accessory_count:params[:accessory][:accessory_count])
+  end
   # GET /accessories/new
   def new
     @accessory = Accessory.new

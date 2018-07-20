@@ -28,7 +28,10 @@
         <td><%= guitar.price %></td>
         <td><%= guitar.serial %></td>
         <td><%= guitar.guitar_type %></td>
-        <td><%= guitar.accessory_count%></td>
+        <%=form_for guitar,url:count_update_path do |f|%>
+          <%=f.hidden_field :id,value:guitar.id%>
+           <td><%= f.number_field :accessory_count, id: :guitar_count ,class:"form-control"%></td>
+        <%end%>
         <td><%= link_to 'Show', guitar %></td>
         <td><%= link_to 'Edit', edit_guitar_path(guitar) %></td>
         <td><%= link_to 'Destroy', guitar, method: :delete, data: { confirm: 'Are you sure?' } %></td>

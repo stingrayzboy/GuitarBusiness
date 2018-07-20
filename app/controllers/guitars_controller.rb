@@ -14,7 +14,9 @@ class GuitarsController < ApplicationController
     #@guitar_images = @guitar.images.all
     #byebug
   end
-
+  def count_update
+    Guitar.find(params[:guitar][:id]).update(accessory_count:params[:guitar][:accessory_count])
+  end
   # GET /guitars/new
   def new
     @guitar = Guitar.new

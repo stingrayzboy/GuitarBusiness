@@ -78,8 +78,8 @@
 				  <%= product.characteristic %>
 				</p>
 			<%end%>
-
-			<%=link_to "Add to Cart",add_to_cart_path(product),class:"btn btn-lg btn-block btn-outline-primary",method: :post,remote: true unless logged_in?(:owner)%>
+			<%="<p><strong>This Product is out of stock</strong></p>".html_safe unless product.accessory_count>0%>
+			<%=link_to "Add to Cart",add_to_cart_path(product),class:"btn btn-lg btn-block btn-outline-primary #{'disabled' unless product.accessory_count>0}",method: :post,remote: true unless logged_in?(:owner)%>
 					
 		</div>
 	</div>

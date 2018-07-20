@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'home/search',to:'home#search',as:'search_product'
   patch 'updatecount',to:'guitars#count_update',as:'count_update'
   patch 'updatecountaccessories',to:'accessories#count_update',as:'count_update_accessory'
+  post 'delete_item/:index',to:'home#delete',as:'delete_item'
   devise_for :users
   resources :accessories
   resources :guitars

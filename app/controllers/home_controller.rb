@@ -24,7 +24,10 @@ class HomeController < ApplicationController
     id=params[:id]
     @product=Product.find(id)
   end
-
+  def delete
+    session[:cart].delete_at(params[:index].to_i)
+    redirect_to checkout_path
+  end
   def search
     @products=[]
     Product.all.includes(:images).each do |prod|

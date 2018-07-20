@@ -14,6 +14,7 @@
 			      <th scope="col">Item</th>
 			      <th scope="col">Name/Model</th>
 			      <th scope="col">Price</th>
+			      <th scope="col">Remove</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -24,6 +25,7 @@
 				      <td><%=p.type.to_s%></td>
 				      <td><%=p.type.to_s == 'Guitar' ? p.model : p.name %></td>
 				      <td><%=p.price%></td>
+				      <td><%=link_to '<i class="fa fa-trash" aria-hidden="true"></i>'.html_safe,delete_item_path(idx),method: :post%></td>
 				      <%total+=p.price%>
 				    </tr>
 

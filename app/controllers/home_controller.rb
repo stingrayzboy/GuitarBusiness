@@ -102,19 +102,13 @@ class HomeController < ApplicationController
   end
 
   def orders
-    @p=Purchase.select("DISTINCT(purchase_id)").where(user:current_user).pluck(:purchase_id).uniq
+    @p=Purchase.select("DISTINCT(purchase_id)").where(user:current_user).order(created_at: :desc).pluck(:purchase_id).uniq
   end
 
   def all_orders
     if logged_in?(:owner)
       @p=nil
-      User.all.each_with_index do |user,idx|
-        if idx==0
-          @p=Purchase.select("DISTINCT(purchase_id)").where(user:user).pluck(:purchase_id).uniq
-        else
-          @p<<Purchase.select("DISTINCT(purchase_id)").where(user:user).pluck(:purchase_id).uniq
-        end
-      end
+      @p=Purchase.select("DISTINCT(purchase_id)").order(created_at: :desc).pluck(:purchase_id).uniq
       @p.flatten!
       #byebug
       render :orders

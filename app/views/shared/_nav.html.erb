@@ -1,11 +1,13 @@
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
       <h5 class="my-0 mr-md-auto font-weight-normal">Guitar Zone</h5>
       	
-
-      	<form action="<%=search_product_path%>" class="form-inline mt-2 mt-md-0 text-center" method="get">
+      	<%unless logged_in?(:owner)%>
+      		<form action="<%=search_product_path%>" class="form-inline mt-2 mt-md-0 text-center" method="get">
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="query">
             <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
 	    </form>	
+      	
+      	<%end%>
       	
 
       	<nav class="my-2 my-md-0 mr-md-3">       

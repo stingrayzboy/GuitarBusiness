@@ -21,7 +21,7 @@
 						<%=link_to :Invoices,all_orders_path,class:"p-2 text-dark"%>
 					<%else%>
 						
-						<%=link_to "Cart",checkout_path,class:"p-2 text-dark",id:"cart"%>
+						<%=link_to "Cart#{(': '+session[:cart].size.to_s) if session[:cart].size>0}",checkout_path,class:"p-2 text-dark",id:"cart"%>
 						<%=link_to "My Orders",my_orders_path,class:"p-2 text-dark"%>
 					<%end%>
 		</nav>

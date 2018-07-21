@@ -47,7 +47,7 @@ class HomeController < ApplicationController
         render :index
       end
     else
-      render html: helpers.tag.strong('Unfortunately the Product you were looking doesnot exists yet.')
+      
     end
   end
 

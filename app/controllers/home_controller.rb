@@ -32,7 +32,7 @@ class HomeController < ApplicationController
     @products=[]
     Product.all.includes(:images).each do |prod|
       prod.search_token.split('|').each do |token|
-        if token.upcase.include?(params['query'].upcase)
+        if token.upcase.include?(params['query'].strip.upcase)
           @products<<prod
           break
         end 

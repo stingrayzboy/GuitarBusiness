@@ -39,8 +39,13 @@ class HomeController < ApplicationController
       end
     end
     unless @products.empty?
-      logger.info"Found something #{@products}"
-      render :index
+      if @products.count==1
+        @product=@products.first
+        render :show
+      else
+        logger.info"Found something #{@products}"
+        render :index
+      end
     else
       render html: helpers.tag.strong('Unfortunately the Product you were looking doesnot exists yet.')
     end

@@ -2,9 +2,12 @@
       <h5 class="my-0 mr-md-auto font-weight-normal">Guitar Zone</h5>
       	
       	<%unless logged_in?(:owner)%>
-      		<form action="<%=search_product_path%>" class="form-inline mt-2 mt-md-0 text-center" method="get">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="query">
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+      		<%=form_tag search_product_path,class:"form-inline mt-2 mt-md-0 text-center" do%>
+      			<%=text_field_tag :query,params['query'],class:"form-control mr-sm-2" %>
+      			<%=button_tag(type: 'submit',class:"btn btn-outline-primary my-2 my-sm-0") do
+  					content_tag(:strong, '<i class="fa fa-search"></i>'.html_safe)
+				end%>
+      		<%end%>
 	    </form>	
       	
       	<%end%>

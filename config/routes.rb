@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'home/bills/:id',to:'home#bills',as:'view_bill'
   get 'orders',to:'home#all_orders',as:'all_orders' 
   get 'show',to:'home#show',as:'show_product'
-  get 'home/search',to:'home#search',as:'search_product'
+  post 'home/search',to:'home#search',as:'search_product'
   patch 'updatecount',to:'guitars#count_update',as:'count_update'
   patch 'updatecountaccessories',to:'accessories#count_update',as:'count_update_accessory'
   post 'delete_item/:index',to:'home#delete',as:'delete_item'
